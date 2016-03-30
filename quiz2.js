@@ -1,14 +1,33 @@
+function setCookie(name, value)
+  {
+    document.cookie=name + "=" + escape(value) + "; path=/; expires=" + expiry.toGMTString();
+  }
 
+$(".pushme").click(function(){
+	var btn = document.createElement("BUTTON");
+    var t = document.createTextNode("Keep it");
+    btn.appendChild(t);
+    document.body.appendChild(btn);
+            });
+    
+    $("BUTTON").click(function(){
+	alert("ssup");
+	            });
+	            
 function loadDoc() {
 
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange=function() {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
-      document.getElementById("demo").innerHTML = xhttp.responseText;
+    	
+    	var json = JSON.parse(xhttp.responseText);               
+    	document.getElementById("demo").innerHTML = json.data;    
+    		
     }
   };
     xhttp.open("GET", "http://www.mattbowytz.com/simple_api.json?data=quizData", true);
     xhttp.send();
+    
     }
 
 function createInput(){
@@ -27,36 +46,49 @@ function createInput(){
 	$click     = $('.click');
 	$submit       = $('.submit');
 
-	$(".mouseover").on(function() {
-		$(this) = $(this);
+	$(".mouseover").mouseover(function() {
 		$(this).text('Scrooge McDuck!');
 		$(this).height($(this).height() + 50);
 	});
-
+	
 	$(".click").click(function() {
+		$this = $(this);
 		$(this).text('Peace Out!')
 		$(this).fadeout(1500);
 		return true;
 	});
 
-	$submit.on('submit', function(e)
+	$(".submitID").submit(function()
 	 {
+	 		 		
 		//e.preventDefault();
 		if ($(this).find('input[type="text"]').val() !== '') 
 		{
-			$(this).find('input').foreach(function()
+			$(this).find('input').each(function()
 			 {
-				$(this).fadeout('slow');
+				$(this).fadeout("slow")
+				$(this).append("<h2>Congratulations! You've entered some text!</h2>");
 			});
-			$(this).appendwith("<h2>Congratulations! You've entered some text!</h2>");
+			alert("heieie");
+			
 		}
 		});
 		
 	$(function() 
 	{
 		setTimeout( function() {
-			$ ( '.timeout').fadeIn('slow') }, 1000);
+			
+			$ ( '.timeout').fadeIn('slow');
+			 }, 1000);
 	});
+	
+	
+	function change()
+	{
+			$ ( '.timeout').fadeIn('slow');
+		setTimeOut(change, 1000);
+	}
+	
 	
 	$(".pushme").click(function () {
             $(this).text(function(i, v){
