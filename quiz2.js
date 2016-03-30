@@ -1,39 +1,42 @@
-function setCookie(name, value)
-  {
+function setCookie(name, value){
     document.cookie=name + "=" + escape(value) + "; path=/; expires=" + expiry.toGMTString();
   }
 
 $(".pushme").click(function(){
+
 	var btn = document.createElement("BUTTON");
-    var t = document.createTextNode("Keep it");
-    btn.appendChild(t);
-    document.body.appendChild(btn);
-            });
+	var t = document.createTextNode("Keep it");
+        btn.appendChild(t);
+        document.body.appendChild(btn);
+	
+});
     
-    $("BUTTON").click(function(){
-	alert("ssup");
-	            });
+//still working on this part
+$("BUTTON").click(function(){
+	//alert("ssup");
+	});
 	            
 function loadDoc() {
 
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange=function() {
-    if (xhttp.readyState == 4 && xhttp.status == 200) {
+  if (xhttp.readyState == 4 && xhttp.status == 200) {
     	
     	var json = JSON.parse(xhttp.responseText);               
     	document.getElementById("demo").innerHTML = json.data;    
-    		
-    }
+    		}
   };
     xhttp.open("GET", "http://www.mattbowytz.com/simple_api.json?data=quizData", true);
     xhttp.send();
     
-    }
+	
+}
 
 function createInput(){
         var $input = $('<input type="button" value="Change it" />');
         $input.appendTo($("body"));
-    }
+	
+}
 
 (function($){
 	
